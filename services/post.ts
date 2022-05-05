@@ -1,6 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from 'prisma/client';
 
 export const getDrafts = (): Promise<any> =>
   prisma.post.findMany({
@@ -61,11 +59,4 @@ export const publish = ({ id }: any): Promise<any> =>
   prisma.post.update({
     where: { id: Number(id) },
     data: { published: true },
-  });
-
-export const createUser = (data: any) =>
-  prisma.user.create({
-    data: {
-      ...data,
-    },
   });
